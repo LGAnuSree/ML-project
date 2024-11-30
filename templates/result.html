@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <style>
+        body {
+            font-family:"Times New Roman", Times, arial;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            background-image: url('{{ url_for('static', filename='diab3.jpg') }}');
+            background-size: cover;
+            background-position: center;
+        }
+
+        h1, p {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+        }
+
+        h1 {
+            transition-delay: 0.5s;
+            transition-delay: 0.5s;
+            font-style: italic; /* Make h1 italic */
+            text-decoration: underline; /* Add underline effect */
+    
+        }
+
+        p {
+            transition-delay: 1s;
+        }
+
+        h1, p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Underline effect */
+        .underline {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>PREDICTION RESULT</h1>
+    <p>
+        {% if prediction == 1 %}
+            Patient has diabetes.Please check with a doctor for further details.
+        {% else %}
+            Patient doesn't have diabetes.
+        {% endif %}
+    </p>
+    <p>Features used for prediction:</p>
+    <ul>
+        {% for key, value in feature_dict.items() %}
+            <li>{{ key }}: {{ value }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
